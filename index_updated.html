@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Maria João Luz — Business Analyst & Process Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #111010; --ink2: #4a4845; --ink3: #8a8682;
+  --paper: #faf9f7; --paper2: #f2f0ec; --paper3: #e8e5df;
+  --gold: #b8933e; --gold-light: #e8d5a3; --gold-pale: #f7f0df;
+  --line: rgba(17,16,16,.1);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --radius: 6px;
+}
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 64px; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.layout { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,249,247,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); padding: .75rem 1.5rem; display: flex; align-items: center; justify-content: flex-end; }
+.nav-name { font-family: var(--serif); font-size: 17px; color: var(--ink); }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { font-size: 13px; color: var(--ink3); text-decoration: none; transition: color .15s; position: relative; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--ink); }
+.nav-links a.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1.5px; background: var(--gold); }
+.hero { padding: 7rem 0 4.5rem; border-bottom: 1px solid var(--line); }
+.hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
+.hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); background: var(--gold-pale); border: 1px solid var(--gold-light); padding: 4px 12px; border-radius: 20px; margin-bottom: 1.25rem; }
+.hero-id { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+.hero-photo { width: 104px; height: 104px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--paper2); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; position: relative; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.hero-photo-fallback { display: none; font-size: 12px; color: var(--ink3); }
+.hero-photo.no-photo img { display: none; }
+.hero-photo.no-photo .hero-photo-fallback { display: block; }
+.hero-name { font-family: var(--serif); font-size: clamp(40px, 6.5vw, 60px); line-height: 1; letter-spacing: -.03em; color: var(--ink); margin-bottom: .5rem; }
+.hero-subtitle { font-size: 14px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--gold); }
+.hero-contacts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: .75rem; font-size: 13px; color: var(--ink3); }
+.hero-contacts a { color: var(--ink2); text-decoration: none; transition: color .15s; }
+.hero-contacts a:hover { color: var(--ink); }
+.hero-contacts span { color: var(--ink3); }
+.hero-bio { font-size: 16px; color: var(--ink2); max-width: 560px; line-height: 1.75; margin-bottom: .75rem; }
+.hero-bio strong { font-weight: 500; color: var(--ink); }
+.hero-proof { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; margin-top: 1rem; }
+.proof-chip { font-size: 12px; color: var(--ink2); background: var(--paper2); border: 1px solid var(--line); padding: 3px 12px; border-radius: 20px; }
+.hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: .6rem 1.25rem; border-radius: var(--radius); text-decoration: none; transition: all .15s; cursor: pointer; border: 1px solid transparent; font-family: var(--sans); }
+.btn-primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn-primary:hover { background: #2a2928; }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-outline:hover { border-color: var(--ink3); background: var(--paper2); }
+.hero-right { text-align: left; padding-top: 154px; }
+.hero-stats { display: flex; flex-direction: column; gap: 1rem; align-items: stretch; }
+.stat-pill { background: var(--paper2); border: 1px solid var(--line); border-radius: 8px; padding: .7rem 1.1rem; text-align: left; }
+.stat-pill .num { font-family: var(--serif); font-size: 26px; color: var(--ink); line-height: 1; }
+.stat-pill .lbl { font-size: 11px; color: var(--ink3); letter-spacing: .04em; }
+.value-strip { padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
+.value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.value-cell { background: var(--paper); padding: 1.5rem; }
+.value-icon { font-size: 20px; color: var(--gold); margin-bottom: .75rem; }
+.value-title { font-family: var(--serif); font-size: 17px; color: var(--ink); margin-bottom: .5rem; }
+.value-body { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+.skills-band { padding: 1.75rem 0; border-bottom: 1px solid var(--line); }
+.skills-scroll { display: flex; gap: .75rem; flex-wrap: wrap; }
+.skill-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; background: var(--paper2); border: 1px solid var(--line); color: var(--ink2); white-space: nowrap; }
+.skill-chip.gold { background: var(--gold-pale); border-color: var(--gold-light); color: var(--gold); }
+.chip-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: .6; }
+section { padding: 4rem 0; border-bottom: 1px solid var(--line); }
+section:last-of-type { border-bottom: none; }
+.sec-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2.5rem; }
+.sec-label { font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); min-width: 90px; }
+.sec-title { font-family: var(--serif); font-size: 28px; color: var(--ink); letter-spacing: -.02em; }
+.sec-line { flex: 1; height: 1px; background: var(--line); }
+.exp-list { display: flex; flex-direction: column; }
+.exp-item { display: grid; grid-template-columns: 160px 1fr; gap: 2rem; padding: 1.75rem 0; border-top: 1px solid var(--line); }
+.exp-item:first-child { border-top: none; padding-top: 0; }
+.exp-period { font-size: 12px; color: var(--ink3); margin-bottom: 4px; }
+.exp-co { font-size: 12px; font-weight: 500; color: var(--ink2); line-height: 1.4; }
+.exp-industry { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--paper2); color: var(--ink3); margin-top: 6px; }
+.exp-role { font-family: var(--serif); font-size: 20px; color: var(--ink); margin-bottom: .75rem; }
+.exp-context { font-size: 13px; color: var(--ink3); font-style: italic; margin-top: -.5rem; margin-bottom: .85rem; line-height: 1.4; }
+.exp-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; padding: 2px 8px; border-radius: 20px; background: var(--gold-pale); color: var(--gold); border: 1px solid var(--gold-light); margin-bottom: .75rem; font-weight: 500; letter-spacing: .04em; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.exp-bullets li { font-size: 14px; color: var(--ink2); padding-left: 1.25rem; position: relative; line-height: 1.6; }
+.exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 12px; top: 2px; }
+.exp-tools { display: flex; gap: 6px; flex-wrap: wrap; margin-top: .85rem; }
+.exp-tool { font-size: 11px; padding: 2px 10px; border-radius: 4px; background: var(--paper3); color: var(--ink3); font-weight: 500; }
+.tools-list { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--paper); }
+.tool-row { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; padding: 1.1rem 1.5rem; border-top: 1px solid var(--line); align-items: baseline; }
+.tool-row:first-child { border-top: none; }
+.tool-cat-name { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); }
+.tool-cat-items { display: flex; flex-wrap: wrap; gap: 6px; }
+.tool-item { font-size: 13px; color: var(--ink2); background: var(--paper2); padding: 3px 10px; border-radius: 4px; font-weight: 500; }
+@media (max-width: 700px) { .tool-row { grid-template-columns: 1fr; gap: .5rem; padding: 1rem 1.1rem; } }
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.edu-card { background: var(--paper2); border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem 1.5rem; }
+.edu-type { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); margin-bottom: 6px; }
+.edu-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.edu-place { font-size: 13px; color: var(--ink3); }
+.edu-year { font-size: 12px; color: var(--ink3); margin-top: 8px; }
+.project-card { background: var(--paper2); border: 1px solid var(--line); border-radius: 12px; padding: 1.75rem 2rem; display: flex; gap: 2rem; align-items: center; justify-content: space-between; flex-wrap: wrap; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+.project-card:hover { transform: translateY(-2px); border-color: var(--ink3); box-shadow: 0 6px 20px rgba(17,16,16,.06); }
+.project-body { flex: 1; min-width: 260px; }
+.project-name { font-family: var(--serif); font-size: 22px; color: var(--ink); margin-bottom: .5rem; }
+.project-soon { align-self: center; font-size: 12px; color: var(--ink3); font-style: italic; white-space: nowrap; }
+.project-desc { font-size: 14px; color: var(--ink2); line-height: 1.6; }
+.project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: .75rem; }
+.project-tag { font-size: 11px; padding: 2px 10px; border-radius: 4px; background: var(--paper3); color: var(--ink2); font-weight: 500; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.contact-item { display: flex; align-items: center; gap: .75rem; padding: 1rem 1.25rem; background: var(--paper2); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: var(--ink); transition: border-color .15s; }
+.contact-item:hover { border-color: var(--ink3); }
+.contact-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--gold-pale); border: 1px solid var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.contact-label { font-size: 11px; color: var(--ink3); margin-bottom: 1px; }
+.contact-val { font-size: 14px; font-weight: 500; color: var(--ink); }
+footer { padding: 2rem 0; text-align: center; font-size: 12px; color: var(--ink3); }
+@media (max-width: 700px) {
+  nav { padding: .6rem 1rem; }
+  nav .nav-links { display: flex; gap: .9rem; flex-wrap: wrap; justify-content: flex-end; }
+  .nav-links a { font-size: 11.5px; }
+  .nav-links a.active::after { bottom: -3px; }
+
+  .layout { padding: 0 1.1rem; }
+
+  .hero { padding: 5rem 0 3rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-right { display: none; }
+  .hero-name { font-size: 38px; }
+  .hero-bio { font-size: 15px; }
+  .hero-contacts { font-size: 12px; gap: 6px; }
+
+  .value-strip { padding: 1.75rem 0; }
+  .value-grid { grid-template-columns: 1fr; }
+
+  section { padding: 2.5rem 0; scroll-margin-top: 56px; }
+  .sec-title { font-size: 24px; }
+
+  .exp-item { grid-template-columns: 1fr; gap: .5rem; padding: 1.4rem 0; }
+  .exp-role { font-size: 18px; }
+
+  .project-card { padding: 1.4rem 1.5rem; gap: 1rem; }
+  .project-card:hover { transform: none; }
+  .project-name { font-size: 19px; }
+
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .hero-name { font-size: 32px; }
+  .sec-title { font-size: 21px; }
+  .nav-links a { font-size: 11px; }
+  .nav-links { gap: .7rem; }
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+.hero-id { animation: fadeUp .5s ease both; }
+.hero-bio { animation: fadeUp .55s .1s ease both; }
+.hero-proof { animation: fadeUp .55s .13s ease both; }
+.hero-cta { animation: fadeUp .55s .15s ease both; }
+.hero-right { animation: fadeUp .55s .2s ease both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul class="nav-links">
+    <li><a href="#value">What I do</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="layout">
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-id">
+        <div>
+          <h1 class="hero-name">Maria João Luz</h1>
+          <div class="hero-subtitle">Business Analyst &amp; Process Automation Specialist</div>
+          <div class="hero-contacts">
+            <a href="mailto:luz.mariajoao@gmail.com">luz.mariajoao@gmail.com</a>
+            <span>·</span>
+            <span>Maia, Porto</span>
+          </div>
+        </div>
+      </div>
+      <p class="hero-bio">
+        Ten years in, and I still find it rewarding when <strong>operational complexity turns into clarity</strong> — when a messy dataset becomes a dashboard that helps people decide faster. I like being across different parts of a business, understanding how things connect and spotting what's quietly slowing teams down. Once I know where the time is really being lost, I build what fixes it: a Power BI report, an automated workflow, or a full-stack app built with AI. The goal is always the same — <strong>give people back their time</strong>. And I'm just as happy talking numbers with finance as I am discussing data with IT.
+      </p>
+      <div class="hero-proof">
+        <span class="proof-chip">Business analysis</span>
+        <span class="proof-chip">Process automation</span>
+        <span class="proof-chip">BI dashboards</span>
+        <span class="proof-chip">Stock management</span>
+        <span class="proof-chip">Business ↔ IT bridge &amp; UAT</span>
+        <span class="proof-chip">Cross-functional analysis</span>
+        <span class="proof-chip">AI-powered tools</span>
+      </div>
+      <div class="hero-cta">
+        <a href="mailto:luz.mariajoao@gmail.com" class="btn btn-primary">Get in touch</a>
+        <a href="https://www.linkedin.com/in/maria-joao-luz" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stats">
+        <div class="stat-pill"><div class="num">10+</div><div class="lbl">Years in operations &amp; analytics</div></div>
+        <div class="stat-pill"><div class="num">5+</div><div class="lbl">Functional areas covered</div></div>
+        <div class="stat-pill"><div class="num">B2B+B2C</div><div class="lbl">Market scope</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="value-strip" id="value">
+  <div class="value-grid">
+    <div class="value-cell">
+      <div class="value-icon">⚙️</div>
+      <div class="value-title">Operational credibility</div>
+      <div class="value-body">I've processed invoices, placed supplier orders, controlled stock and calculated team commissions — I've even helped with picking in the warehouse. I like understanding how everything works, so I can bring real value to the business — whether that's improving a process or building an automation.</div>
+    </div>
+    <div class="value-cell">
+      <div class="value-icon">📊</div>
+      <div class="value-title">Data into decisions</div>
+      <div class="value-body">I take raw ERP data and turn it into something a team can actually use — sometimes that's a clean Excel sheet, sometimes a full dashboard. Either way, the point is the same: help people cut through the numbers and make faster, more strategic decisions.</div>
+    </div>
+    <div class="value-cell">
+      <div class="value-icon">🤖</div>
+      <div class="value-title">AI-powered automation</div>
+      <div class="value-body">I build solutions that remove repetitive work at the source — AI-powered apps, self-running Google Sheets tools, and workflow automations. Mostly self-taught, I use AI as a hands-on partner to design and build these tools, and I'm always learning and exploring what's possible with platforms like n8n.</div>
+    </div>
+  </div>
+</div>
+
+
+<section id="experience">
+  <div class="sec-header">
+    <h2 class="sec-title">Experience</h2>
+    <span class="sec-line"></span>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2026 — Present</div>
+        <div class="exp-co">Ronzino Von Oswald, Lda</div>
+        <span class="exp-industry">Textile · B2B</span>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Product Controller</div>
+        <div class="exp-context">Working across two business areas: Rovo (product development) and Assembly (merchandising)</div>
+        <ul class="exp-bullets">
+          <li>Mapped recurring administrative processes end-to-end — such as supplier orders — then automated them with Python, Streamlit and AI (Claude), eliminating manual data entry and cutting execution time by an estimated 40%+.</li>
+          <li>Built a fully automated stock-needs dashboard in Google Sheets for the merchandising area: a single trigger generates purchasing needs from historical data and current stock levels, replacing a manual task that took ~2 hours a day.</li>
+          <li>Designed a pricing template with built-in manager approval flows, turning an email-based sign-off into a structured, auditable workflow.</li>
+          <li>Bridged product, finance and IT, driving continuous improvement of internal processes and gathering requirements for new developments.</li>
+          <li>Built dashboards and analytical models to support data-driven product decisions — including price-history tracking and business analysis by KPI (such as margins, revenue, sales and purchasing).</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="exp-tool">Python</span><span class="exp-tool">n8n</span><span class="exp-tool">Streamlit</span><span class="exp-tool">Claude AI</span><span class="exp-tool">Looker Studio</span><span class="exp-tool">Google Sheets</span><span class="exp-tool">PHC</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">May 2024 — Dec 2025</div>
+        <div class="exp-co">Eternal &amp; Modern, Lda<br/>(1SA Group)</div>
+        <span class="exp-industry">Luxury Jewellery · B2C</span>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Product Manager &amp; Business Analyst</div>
+        <span class="exp-tag">↑ Internal transition</span>
+        <ul class="exp-bullets">
+          <li>Managed Swarovski store stock (PT &amp; ES) end-to-end: sell-through analysis, supplier orders, invoice validation and inventory monitoring — reducing excess stock by ~10%.</li>
+          <li>Built demand forecast models from historical sales and seasonality data to drive purchasing decisions.</li>
+          <li>Provided operational support to retail stores — helping with questions on ICG and Google Sheets, as well as inventory and purchasing — acting as the link between store teams and central operations.</li>
+          <li>Acted as the bridge between business and IT — gathering development needs and translating them into requirements for the IT team.</li>
+          <li>Improved Power BI dashboards used by the business, surfacing sales and inventory KPIs and variances for faster, more effective decisions.</li>
+          <li>Built a sales commission calculation model for the retail stores' sales teams.</li>
+          <li>Controlled the P&amp;L close and analysed variances.</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="exp-tool">Power BI</span><span class="exp-tool">ICG</span><span class="exp-tool">Excel</span><span class="exp-tool">Google Sheets</span><span class="exp-tool">Power Query</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">May 2023 — May 2024</div>
+        <div class="exp-co">Suprides XXI, SA<br/>(1SA Group)</div>
+        <span class="exp-industry">IT Distribution · B2B</span>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Purchasing Manager &amp; Business Analyst</div>
+        <ul class="exp-bullets">
+          <li>Managed the full purchasing cycle — supplier coordination, order placement and stock monitoring.</li>
+          <li>Calculated sales and product-management commissions, and created operational KPI reporting for management.</li>
+          <li>Supported the Dynamics 365 ERP rollout — testing and validating new developments — and the connected Power BI with business intelligence.</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="exp-tool">Dynamics 365</span><span class="exp-tool">Power BI</span><span class="exp-tool">Excel</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Jul 2022 — Mar 2023</div>
+        <div class="exp-co">Also Portugal, Lda</div>
+        <span class="exp-industry">IT Distribution · B2B</span>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Business Controller</div>
+        <div class="exp-context">Also Portugal acquired JP Sá Couto, SA's IT distribution business</div>
+        <span class="exp-tag">↑ Post-acquisition integration</span>
+        <ul class="exp-bullets">
+          <li>Provided operational support and supported the post-acquisition integration in the Navision ERP.</li>
+          <li>Controlled and managed vendor claims — tracking agreed targets and recovering the amounts due to the company.</li>
+          <li>Calculated commissions for the business unit's teams.</li>
+          <li>Delivered cross-functional BI reporting and KPI analysis for management.</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="exp-tool">Power BI</span><span class="exp-tool">Excel</span><span class="exp-tool">Navision ERP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2019 — Jul 2022</div>
+        <div class="exp-co">JP Sá Couto, SA</div>
+        <span class="exp-industry">IT Distribution · B2B</span>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Business Analyst</div>
+        <ul class="exp-bullets">
+          <li>Controlled and managed vendor claims, and calculated and controlled team commissions.</li>
+          <li>Acted as the bridge between business and IT for business intelligence and Navision developments — running tests before production and making sure the data used by teams was reliable.</li>
+          <li>Owned the company's Strategic Plan control.</li>
+          <li>Built business plans together with the product management leadership.</li>
+          <li>Delivered monthly presentations to leadership on KPIs and variances, supporting strategic decisions across each business area.</li>
+          <li>Developed BI reports and KPI frameworks for senior management, and managed the business intelligence.</li>
+          <li>Analysed P&amp;L variances to support financial control and decision-making.</li>
+          <li>Supported logistics cost control and supplier invoice validation.</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="exp-tool">Power BI</span><span class="exp-tool">Excel</span><span class="exp-tool">Navision ERP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div class="exp-period">Oct 2014 — Jan 2019</div>
+        <div class="exp-co">JP Sá Couto, SA</div>
+        <span class="exp-industry">IT Distribution · B2B</span>
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Director Assistant</div>
+        <ul class="exp-bullets">
+          <li>Supported the implementation of business intelligence within the company, focusing on data validation.</li>
+          <li>Built Excel dashboards to support the sales, product management and logistics teams.</li>
+          <li>Delivered monthly presentations to leadership on KPIs and variances, supporting strategic decisions across each business area.</li>
+        </ul>
+        <div class="exp-tools">
+          <span class="exp-tool">Excel</span><span class="exp-tool">BI</span><span class="exp-tool">Navision ERP</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="tools">
+  <div class="sec-header">
+    <h2 class="sec-title">Tools &amp; Technologies</h2>
+    <span class="sec-line"></span>
+  </div>
+  <div class="tools-list">
+    <div class="tool-row">
+      <div class="tool-cat-name">Analytics &amp; BI</div>
+      <div class="tool-cat-items">
+        <span class="tool-item">Power BI</span><span class="tool-item">Looker Studio</span><span class="tool-item">Excel</span><span class="tool-item">Google Sheets</span><span class="tool-item">Power Query</span>
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="tool-cat-name">Automation &amp; AI</div>
+      <div class="tool-cat-items">
+        <span class="tool-item">Python</span><span class="tool-item">n8n</span><span class="tool-item">SQL</span><span class="tool-item">Streamlit</span><span class="tool-item">Lovable</span><span class="tool-item">Notion</span><span class="tool-item">Claude</span><span class="tool-item">Gemini</span>
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="tool-cat-name">ERP &amp; Systems</div>
+      <div class="tool-cat-items">
+        <span class="tool-item">Dynamics 365</span><span class="tool-item">Navision</span><span class="tool-item">PHC</span><span class="tool-item">ICG</span>
+      </div>
+    </div>
+    <div class="tool-row">
+      <div class="tool-cat-name">Languages</div>
+      <div class="tool-cat-items">
+        <span class="tool-item">Portuguese — Native</span><span class="tool-item">English — B2</span><span class="tool-item">Spanish — B1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="sec-header">
+    <h2 class="sec-title">Education &amp; Training</h2>
+    <span class="sec-line"></span>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card"><div class="edu-type">Degree</div><div class="edu-title">BSc in Management</div><div class="edu-place">Católica Porto</div><div class="edu-year">2010 – 2014</div></div>
+    <div class="edu-card"><div class="edu-type">Training</div><div class="edu-title">SQL Programming Language</div><div class="edu-place">Cinel</div><div class="edu-year">Oct – Nov 2024</div></div>
+    <div class="edu-card"><div class="edu-type">Training</div><div class="edu-title">Data Science &amp; Business Analytics</div><div class="edu-place">EDIT</div><div class="edu-year">Jan – Jun 2024</div></div>
+    <div class="edu-card"><div class="edu-type">Training</div><div class="edu-title">Power BI Level 2</div><div class="edu-place">Portal Gestão</div><div class="edu-year">Nov 2023</div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-header">
+    <h2 class="sec-title">Projects</h2>
+    <span class="sec-line"></span>
+  </div>
+  <div class="project-card">
+    <div class="project-body">
+      <div class="project-name">Order Management App</div>
+      <div class="project-desc">
+        A full-stack order management app for a home bakery. Features client orders with automated subtotal calculations, a daily/weekly/monthly agenda view, a monthly sales summary, and real-time data sync across devices.
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Lovable</span><span class="project-tag">Supabase</span><span class="project-tag">No-code</span>
+      </div>
+    </div>
+    <a href="https://order-management-app-twqm.vercel.app/" target="_blank" class="btn btn-outline" style="align-self:center;">View live demo ↗</a>
+  </div>
+  <div style="margin-top:1rem;">
+  <div class="project-card">
+    <div class="project-body">
+      <div class="project-name">Automated stock-needs dashboard</div>
+      <div class="project-desc">
+        A self-running Google Sheets tool that turns a manual weekly stock analysis into a one-click operation — it reads historical data and current levels and instantly returns purchasing needs. Built to give the operations team back hours every week.
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Google Sheets</span><span class="project-tag">Apps Script</span><span class="project-tag">Process automation</span>
+      </div>
+    </div>
+    <span class="project-soon">Demo available soon</span>
+  </div>
+  <div style="margin-top:1rem;">
+  <div class="project-card">
+    <div class="project-body">
+      <div class="project-name">Pricing template with approval flows</div>
+      <div class="project-desc">
+        A pricing tool in Google Sheets with built-in automatic manager validation — replacing scattered email approvals with a structured, auditable workflow that keeps pricing decisions consistent and traceable.
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Google Sheets</span><span class="project-tag">Workflow automation</span><span class="project-tag">Approval logic</span>
+      </div>
+    </div>
+    <span class="project-soon">Demo available soon</span>
+  </div>
+  </div>
+  <div style="margin-top:1rem;">
+  <div class="project-card">
+    <div class="project-body">
+      <div class="project-name">Internal process automation app</div>
+      <div class="project-desc">
+        An AI-powered internal application that replaces recurring manual administrative tasks. Built with Python and Claude/Gemini, deployed as a Streamlit interface used directly by the operations team.
+      </div>
+      <div class="project-tags">
+        <span class="project-tag">Python</span><span class="project-tag">Claude AI</span><span class="project-tag">Streamlit</span>
+      </div>
+    </div>
+    <span class="project-soon">Demo available soon</span>
+  </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="layout">Maria João Luz · Maia, Porto, Portugal · Business Analyst &amp; Process Automation</div>
+</footer>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var sections = links
+    .map(function (a) {
+      var id = a.getAttribute('href');
+      return id && id.charAt(0) === '#' ? document.querySelector(id) : null;
+    })
+    .filter(Boolean);
+
+  if (!('IntersectionObserver' in window) || !sections.length) return;
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        links.forEach(function (l) { l.classList.remove('active'); });
+        var active = links.filter(function (l) {
+          return l.getAttribute('href') === '#' + entry.target.id;
+        })[0];
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-50% 0px -50% 0px' });
+
+  sections.forEach(function (s) { observer.observe(s); });
+})();
+</script>
+</body>
+</html>
